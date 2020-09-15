@@ -1,0 +1,105 @@
+﻿@using AspNetMvc_EfCodeFirst.ViewModels.Home
+@model HomePageViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            @Html.ActionLink("YENİ KİŞİ", "AddPerson", "Person", null, new { @class = "btn btn-success" })
+
+           
+            @*<input type="submit" class="btn btn-success" name="" value="YENİ KİŞİ"/>*@
+            <br />
+            <br />
+           
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Ad</th>
+                        <th scope="col">Soyad</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.People)
+                    {
+                        if (item.IsActive)
+                        {
+                            <tr>
+                                <th>@Html.ActionLink("DÜZENLE", "UpdatePerson", "Person", new { personID = item.PersonId }, new { @class = "btn btn-primary btn-xs" })</th>
+                                <th>@Html.ActionLink("SİL", "DeletePerson", "Person", new { personID = item.PersonId }, new { @class = "btn btn-warning btn-xs" })</th>
+                                <th scope="row">@item.PersonId</th>
+
+                                <td>@item.PersonName</td>
+                                <td>@item.PersonSurname</td>
+
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+       
+
+
+            <div class="col-md-6">
+                @Html.ActionLink("YENİ ADRES", "AddAddres","Addres",null, new { @class = "btn btn-success"})
+                @*<input type="button" value="YENİ ADRES" class="btn btn-success"/>*@
+                <br />
+                <br />
+        
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col">ADRESLER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.Addreses)
+                        {
+                            if (item.IsActive)
+
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink("DÜZENLE", "UpdateAddress", "Addres", new { addressID = item.AddressId }, new { @class = "btn btn-primary btn-xs" })</td>
+                                    <td>@Html.ActionLink("SİL", "DeleteAdress", "Addres", new { addressID = item.AddressId }, new { @class = "btn btn-warning btn-xs" })</td>
+
+                                    <td>@(item.Person.PersonName + " " + item.Person.PersonSurname + " " + item.AddressDefinition)</td>
+
+                                </tr>
+                            }
+
+
+                        }
+
+                    </tbody>
+                </table>
+
+
+         
+        </div>
+
+        </div>
+
+   
+
+</div>
+
+  
+
+<h2>Index</h2>
+
+
+

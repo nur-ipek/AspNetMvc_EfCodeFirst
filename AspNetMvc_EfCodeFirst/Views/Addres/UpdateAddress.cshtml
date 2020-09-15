@@ -1,0 +1,56 @@
+﻿@using AspNetMvc_EfCodeFirst.Models
+@model Addres
+@{
+    ViewBag.Title = "UpdateAddress";
+}
+
+<h2>UpdateAddress</h2>
+@using (Html.BeginForm())
+{
+    <form>
+        
+
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Adres</label>
+            <textarea class="form-control" name="AddressDefinition">@Model.AddressDefinition</textarea> 
+
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">İsim</label>
+            @*@Html.DropDownListFor(x => x.Person.PersonId, (List<SelectListItem>)ViewBag.People)*@ 
+        <select class="form-control" name="PersonId">
+            <option value="">Seçiniz</option>
+            @if (ViewBag.People != null)
+            {
+                foreach (var item in ViewBag.People)
+                {
+                    if (Model.PersonId == item.PersonId)
+                    {
+                        <option value="@item.PersonId" selected>@item.PersonName @item.PersonSurname</option>
+
+                    }
+                    else
+                    {
+                        <option value="@item.PersonId">@item.PersonName @item.PersonSurname</option>
+                    }
+                }
+            }
+
+        </select>
+        </div>
+
+        <button type="submit" class="btn btn-warning">ADRES GÜNCELLE</button>
+
+        <div class="form-group">
+            @if (ViewBag.Result != null)
+            {
+                <div class="alert alert-@ViewBag.Status" role="alert">
+                    @ViewBag.Result
+                </div>
+            }
+
+        </div>
+
+    </form>
+}
+

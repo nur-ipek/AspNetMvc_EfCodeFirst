@@ -1,0 +1,39 @@
+﻿@model AspNetMvc_EfCodeFirst.Models.Person
+@{
+    ViewBag.Title = "UpdatePerson";
+}
+
+<h2>UpdatePerson</h2>
+
+@using (Html.BeginForm())
+
+
+ {
+    <form>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Ad</label>
+            <input type="text" value="@Model.PersonName" class="form-control" name="PersonName" id="formGroupExampleInput" placeholder="Adınız">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Soyadınız</label>
+            <input type="text" value="@Model.PersonSurname" class="form-control" name="PersonSurname" id="formGroupExampleInput2" placeholder="Soyadınız">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Yaşınız</label>
+            <input type="text" value="@Model.PersonAge" class="form-control" name="PersonAge" id="formGroupExampleInput2" placeholder="Soyadınız">
+        </div>
+
+        <button type="submit" class="btn btn-warning">KİŞİYİ GÜNCELLE</button>
+
+        <div class="form-group">
+            @if (ViewBag.Result != null)
+            {
+                <div class="alert alert-@ViewBag.Status" role="alert">
+                    @ViewBag.Result
+                </div>
+            }
+
+        </div>
+    </form>
+}
+

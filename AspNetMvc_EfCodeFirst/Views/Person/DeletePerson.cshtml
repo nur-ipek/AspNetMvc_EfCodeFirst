@@ -1,0 +1,35 @@
+﻿@using AspNetMvc_EfCodeFirst.Models
+@model Person
+@{
+    ViewBag.Title = "DeletePerson";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kişiyi Silmek İstediğinizden Emin Misiniz ?</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Yaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>@Model.PersonName</td>
+            <td>@Model.PersonSurname</td>
+            <td>@Model.PersonAge</td>
+        </tr>
+
+    </tbody>
+
+</table>
+<hr />
+@using (Html.BeginForm())
+{ 
+<button type="submit" class=" btn btn-danger btn-md">KİŞİYİ SİL</button>
+}
+

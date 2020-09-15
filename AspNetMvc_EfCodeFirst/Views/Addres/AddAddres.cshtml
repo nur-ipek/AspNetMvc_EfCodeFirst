@@ -1,0 +1,35 @@
+﻿@model AspNetMvc_EfCodeFirst.Models.Addres
+@{
+    ViewBag.Title = "AddAddres";
+}
+
+<h2>AddAddres</h2>
+@using (Html.BeginForm())
+{
+<form>
+
+
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Adres</label>
+        <textarea class="form-control" name="AddressDefinition"></textarea>
+       
+    </div>
+    <div class="form-group">
+            <label for="formGroupExampleInput2">İsim</label>
+            @Html.DropDownListFor(x=> x.Person.PersonId,(List<SelectListItem>)ViewBag.People)
+        </div>
+
+    <button type="submit" class="btn btn-warning">ADRES EKLE</button>
+
+    <div class="form-group">
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status" role="alert">
+                @ViewBag.Result
+            </div>
+        }
+
+    </div>
+   
+</form>
+}

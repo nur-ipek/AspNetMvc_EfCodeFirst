@@ -32,11 +32,12 @@ namespace AspNetMvc_EfCodeFirst.Controllers
         public ActionResult AddAddres(Addres addres)
         {
             DatabaseContext databaseContext = new DatabaseContext();
+            addres.IsActive = true;
             Person person = databaseContext.People.Where(x => x.PersonId == addres.Person.PersonId).FirstOrDefault();
             if (person != null)
             {
                 addres.Person = person;
-
+              
                 databaseContext.Addreses.Add(addres);
                 int result = databaseContext.SaveChanges();
 
